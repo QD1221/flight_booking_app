@@ -1,3 +1,4 @@
+import 'package:flight_booking_app/ui/ticket_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slider_button/slider_button.dart';
@@ -76,6 +77,7 @@ class StartPage extends StatelessWidget {
                     dismissible: true,
                     action: () {
                       Get.toNamed('/ticket');
+                      // Get.to(TicketPage());
                     },
                     height: 48,
                     width: 160,
