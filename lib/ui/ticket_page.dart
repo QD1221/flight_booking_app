@@ -1,3 +1,5 @@
+import 'package:flight_booking_app/model/flight_ticket.dart';
+import 'package:flight_booking_app/ui/ticket_separator.dart';
 import 'package:flutter/material.dart';
 
 class TicketPage extends StatefulWidget {
@@ -66,7 +68,7 @@ class _TicketPageState extends State<TicketPage> {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Search',
-                        hintStyle: TextStyle(fontSize: 24),
+                        hintStyle: TextStyle(fontSize: 20),
                         icon: Icon(Icons.search),
                         border: InputBorder.none,
                       ),
@@ -78,11 +80,136 @@ class _TicketPageState extends State<TicketPage> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: 8,
+                      itemCount: ticketItems.length,
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
+                        FlightTicket _ticket = ticketItems[index];
                         return Card(
-                          child: Text('Sample'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${_ticket.title ?? 'UNKNOWN'}',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        '${_ticket.fromDate ?? 'UNKNOWN'}',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${_ticket.arriveDate ?? 'UNKNOWN'}',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 48,
+                                  width: double.infinity,
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        _ticket.origin ?? 'UNKNOWN',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                left: 0,
+                                                bottom: 0,
+                                                child: TicketSeparator(
+                                                  height: 2,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 0,
+                                                left: 0,
+                                                bottom: 0,
+                                                child: CircleAvatar(
+                                                  radius: 8,
+                                                  backgroundColor:
+                                                      Colors.black,
+                                                ),
+                                              ),
+
+                                              Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                bottom: 0,
+                                                child: CircleAvatar(
+                                                  radius: 8,
+                                                  backgroundColor:
+                                                      Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        _ticket.origin ?? 'UNKNOWN',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '${_ticket.fromTime ?? 'UNKNOWN'}',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${_ticket.elapsedTime ?? 'UNKNOWN'}',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${_ticket.arriveTime ?? 'UNKNOWN'}',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
                         );
                       }),
                 )
