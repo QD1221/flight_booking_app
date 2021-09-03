@@ -1,4 +1,3 @@
-import 'package:flight_booking_app/ui/ticket_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slider_button/slider_button.dart';

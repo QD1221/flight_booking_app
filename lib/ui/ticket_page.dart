@@ -1,6 +1,8 @@
 import 'package:flight_booking_app/model/flight_ticket.dart';
+import 'package:flight_booking_app/ui/qr_scan_page.dart';
 import 'package:flight_booking_app/ui/ticket_separator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({Key? key}) : super(key: key);
@@ -84,130 +86,155 @@ class _TicketPageState extends State<TicketPage> {
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
                         FlightTicket _ticket = ticketItems[index];
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${_ticket.title ?? 'UNKNOWN'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                        bool _isRunning = _ticket.isRunning ?? false;
+                        return GestureDetector(
+                          onTap: (){
+                            Get.to(() => QrScanPage());
+                          },
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${_ticket.title ?? 'UNKNOWN'}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 12),
-                                  child: Row(
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 12),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '${_ticket.fromDate ?? 'UNKNOWN'}',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${_ticket.arriveDate ?? 'UNKNOWN'}',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 48,
+                                    width: double.infinity,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          _ticket.origin ?? 'UNKNOWN',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            child: Stack(
+                                              children: [
+                                                Positioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  child: TicketSeparator(
+                                                    height: 2,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                AnimatedPositioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  duration:
+                                                      Duration(milliseconds: 150),
+                                                  child: RotatedBox(
+                                                    quarterTurns: 1,
+                                                    child: Icon(
+                                                      Icons.flight,
+                                                      color: _isRunning
+                                                          ? Colors.purpleAccent
+                                                          : Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  child: CircleAvatar(
+                                                    radius: 8,
+                                                    backgroundColor: Colors.black,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  bottom: 0,
+                                                  child: CircleAvatar(
+                                                    radius: 8,
+                                                    backgroundColor:
+                                                        Colors.purpleAccent,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          _ticket.origin ?? 'UNKNOWN',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        '${_ticket.fromDate ?? 'UNKNOWN'}',
+                                        '${_ticket.fromTime ?? 'UNKNOWN'}',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${_ticket.elapsedTime ?? 'UNKNOWN'}',
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 12,
                                         ),
                                       ),
                                       Text(
-                                        '${_ticket.arriveDate ?? 'UNKNOWN'}',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 48,
-                                  width: double.infinity,
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        _ticket.origin ?? 'UNKNOWN',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Stack(
-                                            children: [
-                                              Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                left: 0,
-                                                bottom: 0,
-                                                child: TicketSeparator(
-                                                  height: 2,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                top: 0,
-                                                left: 0,
-                                                bottom: 0,
-                                                child: CircleAvatar(
-                                                  radius: 8,
-                                                  backgroundColor:
-                                                      Colors.black,
-                                                ),
-                                              ),
-
-                                              Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                bottom: 0,
-                                                child: CircleAvatar(
-                                                  radius: 8,
-                                                  backgroundColor:
-                                                      Colors.black,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        _ticket.origin ?? 'UNKNOWN',
+                                        '${_ticket.arriveTime ?? 'UNKNOWN'}',
                                         style: TextStyle(
                                           fontSize: 12,
                                         ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '${_ticket.fromTime ?? 'UNKNOWN'}',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${_ticket.elapsedTime ?? 'UNKNOWN'}',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${_ticket.arriveTime ?? 'UNKNOWN'}',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         );

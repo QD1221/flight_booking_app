@@ -10,12 +10,12 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   get: ^4.3.8
-
   slider_button:
     git:
       url: https://github.com/Shiba-Kar/Slider-Button.git
       ref: master
-
+  barcode: ^2.1.0
+  flutter_svg: ^0.22.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

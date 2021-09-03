@@ -1,4 +1,4 @@
-class FlightTicket{
+class FlightTicket {
   String? title;
   String? fromDate;
   String? fromTime;
@@ -23,15 +23,40 @@ class FlightTicket{
 
 List<FlightTicket> ticketItems = [
   FlightTicket(
-    title: 'VACATION IN EGYPT'
+    title: 'VACATION IN EGYPT',
+    fromDate: 'AUG 20',
+    fromTime: '06:35 AM',
+    arriveDate: 'AUG 20',
+    arriveTime: '12.35 PM',
+    elapsedTime: '04h 00m',
+    destination: 'ARN',
+    origin: 'ARN',
+    isRunning: false,
   ),
   FlightTicket(
-      title: 'VACATION IN PARIS'
+    title: 'VACATION IN PARIS',
+    fromDate: 'AUG 22',
+    fromTime: '06:35 AM',
+    arriveDate: 'AUG 20',
+    arriveTime: '12.35 PM',
+    elapsedTime: '12h 10m',
+    destination: 'COG',
+    origin: 'IFK',
+    isRunning: false,
   ),
   FlightTicket(
-      title: 'VACATION IN BERLIN'
+    title: 'VACATION IN BERLIN',
+
   ),
   FlightTicket(
-      title: 'BIG TRIP TO NEW YORK'
+    title: 'BIG TRIP TO NEW YORK',
+    fromDate: 'AUG 22',
+    fromTime: '06:35 AM',
+    arriveDate: 'AUG 28',
+    arriveTime: '12.35 PM',
+    elapsedTime: '12h 10m',
+    destination: 'GOT',
+    origin: 'CGN',
+    isRunning: true,
   )
 ];
