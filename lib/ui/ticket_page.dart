@@ -88,9 +88,9 @@ class _TicketPageState extends State<TicketPage> {
                         FlightTicket _ticket = ticketItems[index];
                         bool _isRunning = _ticket.isRunning ?? false;
                         return GestureDetector(
-                          onTap: (){
-                            Get.to(() => QrScanPage());
-                          },
+                          onTap: () => Get.to(() => QrScanPage(
+                                flightTicket: _ticket,
+                              )),
                           child: Card(
                             child: Padding(
                               padding: const EdgeInsets.all(16),
@@ -105,8 +105,8 @@ class _TicketPageState extends State<TicketPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -163,8 +163,8 @@ class _TicketPageState extends State<TicketPage> {
                                                   right: 0,
                                                   left: 0,
                                                   bottom: 0,
-                                                  duration:
-                                                      Duration(milliseconds: 150),
+                                                  duration: Duration(
+                                                      milliseconds: 150),
                                                   child: RotatedBox(
                                                     quarterTurns: 1,
                                                     child: Icon(
@@ -181,7 +181,8 @@ class _TicketPageState extends State<TicketPage> {
                                                   bottom: 0,
                                                   child: CircleAvatar(
                                                     radius: 8,
-                                                    backgroundColor: Colors.black,
+                                                    backgroundColor:
+                                                        Colors.black,
                                                   ),
                                                 ),
                                                 Positioned(
@@ -199,7 +200,7 @@ class _TicketPageState extends State<TicketPage> {
                                           ),
                                         ),
                                         Text(
-                                          _ticket.origin ?? 'UNKNOWN',
+                                          _ticket.destination ?? 'UNKNOWN',
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.bold,
